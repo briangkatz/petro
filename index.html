@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>U.S. Petroleum Imports 2019</title>
+
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@0.7.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="css/main.css"/>
+
+<body>
+  <div id="map"></div>
+  <div class="source box">
+    <div class="title">U.S. petroleum imports</div>
+    This map shows how many petroleum products in thousands of barrels were imported by each U.S. port in the year 2019. <a href="https://www.eia.gov/petroleum/imports/companylevel/">Data:</a> U.S. Energy Information Administration, company level imports in 2019.<br>Circles indicate source countries. Hover over a country to see where and how much petroleum was imported into the U.S. from each country.
+  </div>
+</body>
+
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="https://unpkg.com/leaflet@0.7.3/dist/leaflet.js"></script>
+<script src="js/spatialsankey.js" type="text/javascript"></script>
+<script src="js/main.js" type="text/javascript"></script>
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-110256930-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-110256930-4');
+</script>
