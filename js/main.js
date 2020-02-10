@@ -63,6 +63,36 @@ d3.json("assets/nodes.geojson", function(nodes) {
       circs.transition().style('opacity', 0.7);
     };
 
+    var click = function(d){
+      // Remove links
+      linklayer.selectAll("path").remove();
+      // Get link data for this node
+      var nodelinks = spatialsankey.links().filter(function(link){
+        return link.source == d.id;
+      });
+
+      // Add data to link layer
+      var beziers = linklayer.selectAll("path").data(nodelinks);
+      link = spatialsankey.link(options);
+
+      // Draw new links
+      beziers.enter()
+        .append("path")
+        .attr("d", link)
+        .attr('id', function(d){return d.id})
+        .style("stroke-width", spatialsankey.link().width())
+        .style("stroke", "#0080fe");
+
+      // Remove old links
+      beziers.exit().remove();
+
+      // Hide inactive nodes
+//      var circleUnderMouse = this;
+//      circs.transition().style('opacity',function () {
+//          return (this === circleUnderMouse) ? 0.7 : 0;
+//      });
+    };
+
     // Draw nodes
     var node = spatialsankey.node()
     var circs = nodelayer.selectAll("circle")
@@ -76,6 +106,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
       .style("fill", "yellow")
       .attr("opacity", 0.7)
       .on('mouseover', mouseover)
+      .on('click', click)
       .on('mouseout', mouseout);
 
     // Adopt size of drawn objects after leaflet zoom reset
