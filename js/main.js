@@ -3,12 +3,9 @@ var map = new L.map('map', {
           center: new L.LatLng(50,0),
           zoom: 3,
           layers: [
-            new L.tileLayer('http://{s}tile.stamen.com/toner/{z}/{x}/{y}.png', {
-              subdomains: ['','a.','b.','c.','d.'],
-              attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>'
-            })
+            new L.tileLayer('https://api.mapbox.com/styles/v1/katzbr/ck6gusg4j0jmw1iubdn4yrsn9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2F0emJyIiwiYSI6ImNqOHhmMnBucDIwZm4ycW8ya2d5cHF0cmsifQ.8rcjz0DyWs_ncWfOZ0VwKA')
           ]
-        });
+    });
 
 // Initialize the SVG layer
 map._initPathRoot()
