@@ -78,7 +78,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
         .attr("d", link)
         .attr('id', function(d){return d.id})
         .style("stroke-width", spatialsankey.link().width())
-        .style("stroke", "#0080fe");
+        .style("stroke", "#ffff00);
 
       // Remove old links
       beziers.exit().remove();
