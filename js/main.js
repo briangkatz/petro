@@ -100,7 +100,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
       .attr("cy", node.cy)
       .attr("r", node.r)
       .style("fill", node.fill)
-      .style("fill", "yellow")
+      .style("fill", "blue")
       .attr("opacity", 0.7)
       .on('mouseover', mouseover)
       .on('click', click)
