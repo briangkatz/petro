@@ -41,7 +41,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
         .attr("d", link)
         .attr('id', function(d){return d.id})
         .style("stroke-width", spatialsankey.link().width())
-        .style("stroke", "#ffff00");
+        .style("stroke", "#0080fe");
 
       // Remove old links
       beziers.exit().remove();
@@ -78,7 +78,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
         .attr("d", link)
         .attr('id', function(d){return d.id})
         .style("stroke-width", spatialsankey.link().width())
-        .style("stroke", "#ffff00);
+        .style("stroke", "#0080fe");
 
       // Remove old links
       beziers.exit().remove();
@@ -100,7 +100,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
       .attr("cy", node.cy)
       .attr("r", node.r)
       .style("fill", node.fill)
-      .style("fill", "blue")
+      .style("fill", "yellow")
       .attr("opacity", 0.7)
       .on('mouseover', mouseover)
       .on('click', click)
