@@ -1,7 +1,11 @@
-// Set leaflet map
+// Create Leaflet map
 var map = new L.map('map', {
-          center: new L.LatLng(50,0),
+          center: new L.LatLng(0, 0),
           zoom: 3,
+          minZoom: 3,
+          maxZoom: 7,
+          detectRetina: true,
+          attribution: 'Author: Brian G. Katz',
           layers: [
             new L.tileLayer('https://api.mapbox.com/styles/v1/katzbr/ck6gusg4j0jmw1iubdn4yrsn9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2F0emJyIiwiYSI6ImNqOHhmMnBucDIwZm4ycW8ya2d5cHF0cmsifQ.8rcjz0DyWs_ncWfOZ0VwKA')
           ]
@@ -41,7 +45,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
         .attr("d", link)
         .attr('id', function(d){return d.id})
         .style("stroke-width", spatialsankey.link().width())
-        .style("stroke", "#0080fe");
+        .style("stroke", "#FFA500");
 
       // Remove old links
       beziers.exit().remove();
@@ -78,16 +82,10 @@ d3.json("assets/nodes.geojson", function(nodes) {
         .attr("d", link)
         .attr('id', function(d){return d.id})
         .style("stroke-width", spatialsankey.link().width())
-        .style("stroke", "#0080fe");
+        .style("stroke", "#FFA500");
 
       // Remove old links
       beziers.exit().remove();
-
-      // Hide inactive nodes
-//      var circleUnderMouse = this;
-//      circs.transition().style('opacity',function () {
-//          return (this === circleUnderMouse) ? 0.7 : 0;
-//      });
     };
 
     // Draw nodes
@@ -100,7 +98,7 @@ d3.json("assets/nodes.geojson", function(nodes) {
       .attr("cy", node.cy)
       .attr("r", node.r)
       .style("fill", node.fill)
-      .style("fill", "yellow")
+      .style("fill", "blue")
       .attr("opacity", 0.7)
       .on('mouseover', mouseover)
       .on('click', click)
@@ -125,3 +123,4 @@ d3.selectAll("input").forEach(function(x){
 d3.selectAll("input").on("click", function(){
   options[this.name] = parseFloat(this.value);
 });
+
