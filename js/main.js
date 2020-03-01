@@ -5,11 +5,11 @@ var map = new L.map('map', {
           minZoom: 3,
           maxZoom: 7,
           detectRetina: true,
-          attribution: 'Author: Brian G. Katz',
           layers: [
             new L.tileLayer('https://api.mapbox.com/styles/v1/katzbr/ck6gusg4j0jmw1iubdn4yrsn9/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoia2F0emJyIiwiYSI6ImNqOHhmMnBucDIwZm4ycW8ya2d5cHF0cmsifQ.8rcjz0DyWs_ncWfOZ0VwKA')
           ]
     });
+map.attributionControl.addAttribution('Author: <a href="https://github.com/briangkatz">Brian G. Katz</a>');
 
 // Initialize the SVG layer
 map._initPathRoot()
