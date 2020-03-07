@@ -30,7 +30,7 @@ geojson = {
     "features": []
 }
 
-# Create new field with full port city and state names for more accurate geocoding
+# Create new field with full port city and state names for more accurate geocoding results
 df['PORT_CITY_'] = df['PORT_CITY'].str.split(',').str[0]
 df['PORT_CITY_STATE'] = df['PORT_CITY_'].str.cat(df['PORT_STATE'], sep=', ')
 
@@ -46,67 +46,52 @@ for place in places:
         node = df[df['PORT_CITY_STATE'] == place].mean()['PORT_CODE'].astype(int)
     else:
         node = df[df['CNTRY_NAME'] == place].mean()['GCTRY_CODE'].astype(int)
+    # Handle exceptions for place names that were detected incorrectly by geocoder
+    if place == 'PT CANAVERAL, FLORIDA':
+        place = 'PORT CANAVERAL, FLORIDA'
     # Geocode coordinates for places
     location = locator.geocode(place)
     # Handle exceptions for place names that could not be detected by geocoder
     if not location:
         if place == 'CHAMPL-RS PT, NEW YORK':
             place = 'CHAMPLAIN-ROUSES POINT, NEW YORK'
-            location = locator.geocode(place)
         elif place == 'INTER. FALLS, MINNESOTA':
             place = 'INTERNATIONAL FALLS, MINNESOTA'
-            location = locator.geocode(place)
         elif place == 'BUFF-NIAG FL, NEW YORK':
             place = 'BUFFALO-NIAGARA FALLS, NEW YORK'
-            location = locator.geocode(place)
         elif place == 'HIG-SPRG/ALB, VERMONT':
             place = 'HIGHGATE SPRINGS-ALBURG, VERMONT'
-            location = locator.geocode(place)
         elif place == 'HONOLU/PEARL, HAWAII':
             place = 'PEARL HARBOR, HAWAII'
-            location = locator.geocode(place)
         elif place == 'CHRISTIANSTD, VIRGIN ISLANDS':
             place = 'CHRISTIANSTED, VIRGIN ISLANDS'
-            location = locator.geocode(place)
         elif place == 'NAWILIWV-POR, HAWAII':
             place = 'NAWILIWILI HARBOR, HAWAII'
-            location = locator.geocode(place)
         elif place == 'SANPABLO BAY, CALIFORNIA':
             place = 'SAN PABLO BAY, CALIFORNIA'
-            location = locator.geocode(place)
         elif place == 'SALT LK CTY, UTAH':
             place = 'SALT LAKE CITY, UTAH'
-            location = locator.geocode(place)
         elif place == 'NATRONA APRT, WYOMING':
             place = 'CASPER/NATRONA COUNTY INTERNATIONAL AIRPORT, WYOMING'
-            location = locator.geocode(place)
         elif place == 'SAULT ST-MAR, MICHIGAN':
             place = 'SAULT STE. MARIE, MICHIGAN'
-            location = locator.geocode(place)
         elif place == 'RCHMD-PETERS, VIRGINIA':
             place = 'RICHMOND-PETERSBURG, VIRGINIA'
-            location = locator.geocode(place)
         elif place == 'DALTON CACHE, ALASKA':
             place = 'HAINES, ALASKA'
-            location = locator.geocode(place)
         elif place == 'SAN FRAN INT AP, CALIFORNIA':
             place = 'SAN FRANCISCO INTERNATIONAL AIRPORT, CALIFORNIA'
-            location = locator.geocode(place)
         elif place == 'BEECHERFALLS, VERMONT':
             place = 'BEECHER FALLS, VERMONT'
-            location = locator.geocode(place)
         elif place == 'MACKINAC ISL, MICHIGAN':
             place = 'MACKINAC ISLAND, MICHIGAN'
-            location = locator.geocode(place)
         elif place == 'CORPUS CHRIS, TEXAS':
             place = 'CORPUS CHRISTI, TEXAS'
-            location = locator.geocode(place)
         elif place == 'SANFRANCISCO, CALIFORNIA':
             place = 'SAN FRANCISCO, CALIFORNIA'
-            location = locator.geocode(place)
         elif place == 'NORTHGATE, NORTH DAKOTA':
             place = 'BURKE COUNTY, NORTH DAKOTA'
-            location = locator.geocode(place)
+        location = locator.geocode(place)
     if not location:
         print('Geocode failed: ' + place)
 
